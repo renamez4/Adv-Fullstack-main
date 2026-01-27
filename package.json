@@ -1,0 +1,29 @@
+{
+  "name": "adv-fullstack",
+  "version": "1.0.0",
+  "description": "Respository for Fullstack code",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "format": "prettier --write *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renamez4/Adv-Fullstack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renamez4/Adv-Fullstack/issues"
+  },
+  "homepage": "https://github.com/renamez4/Adv-Fullstack#readme",
+  "devDependencies": {
+    "prettier": "^3.7.4"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}
