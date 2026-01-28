@@ -30,6 +30,10 @@ let books = [
     }
 ];
 
+app.get("/", (req, res) => {
+  res.send("Hello World!, welcome to the Book API.");
+});
+
 // route to get all books
 app.get("/books", (req, res) => {
     res.json(books);
@@ -72,4 +76,4 @@ app.delete("/books/:id", (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => { console.log(`Listening on port http://localhost:${port}/books...`); });
+app.listen(port, () => { console.log(`Listening on port http://localhost:${port}...`); });

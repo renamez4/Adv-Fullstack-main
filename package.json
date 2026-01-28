@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/renamez4/Adv-Fullstack#readme",
   "devDependencies": {
+    "nodemon": "^3.1.11",
     "prettier": "^3.7.4"
   },
   "dependencies": {
