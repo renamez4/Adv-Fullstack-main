@@ -1,26 +1,32 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
+const bodyParser = require("body-parser");
 
-// mongoose.connect("mongodb")
+mongoose.connect(
+    "mongodb://admin:FYBzyh31871@node86043-env-advcompro.proen.app.ruk-com.cloud:11754",
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    }
+
+);
 
 
 const Book = mongoose.model("Book", {
-    id:{
+    id: {
         type: Number,
         unique: true,
         required: true
     },
     title: String,
     author: String,
-    });
+});
 
 const app = express();
-
 app.use(express.json());
 
 app.post("/books", async (req, res) => {
-    try{
+    try {
         const lastBook = await Book.findOne().sort({ id: -1 });
         const nextId = lastBook ? lastBook.id + 1 : 1;
 
@@ -36,7 +42,7 @@ app.post("/books", async (req, res) => {
 });
 
 app.get("/books", async (req, res) => {
-    try{
+    try {
         const books = await Book.find();
         res.send(books);
     } catch (error) {
@@ -45,7 +51,7 @@ app.get("/books", async (req, res) => {
 });
 
 app.get("/books/:id", async (req, res) => {
-    try{
+    try {
         const book = await Book.findOne({ id: req.params.id });
         res.send(book);
     } catch (error) {
@@ -54,7 +60,7 @@ app.get("/books/:id", async (req, res) => {
 });
 
 app.put("/books/:id", async (req, res) => {
-    try{
+    try {
         const book = await Book.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
         res.send(book);
     } catch (error) {
@@ -63,7 +69,7 @@ app.put("/books/:id", async (req, res) => {
 });
 
 app.delete("/books/:id", async (req, res) => {
-    try{
+    try {
         const book = await Book.findOneAndDelete({ id: req.params.id });
         res.send(book);
     } catch (error) {
@@ -73,5 +79,5 @@ app.delete("/books/:id", async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port http://localhost:${PORT}...`);
 });
