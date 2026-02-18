@@ -7,7 +7,7 @@ app.use(express.json());
 const sequelize = new Sequelize('database', 'username', 'password', {
     host: 'localhost',
     dialect: 'sqlite',
-    storage: './Database/Book.sqlite'
+    storage: './Database/SQBook.sqlite'
 });
 
 const Book = sequelize.define('book', {
@@ -27,6 +27,10 @@ const Book = sequelize.define('book', {
 });
 
 sequelize.sync();
+
+app.get("/", (req, res) => {
+    res.send("Sequelize SQLite Book API" );
+});
 
 app.get("/books", (req, res) => {
     Book.findAll().then(books => {
