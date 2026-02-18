@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Book</title>
 </head>
+
 <body>
-    <h1><%= book.title %></h1>
-    <P>Author: <%= book.author %></P>
+    <h1>
+        <%= book.title %>
+    </h1>
+    <P>Author: <%= book.author %>
+    </P>
     <a href="/update/<%= book.id%>">Edit</a>
     <a href="/delete/<%= book.id%>">Delete</a>
     <a href="/">Back to List</a>
 </body>
+
 </html>

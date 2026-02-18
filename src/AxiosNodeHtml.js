@@ -8,13 +8,14 @@ var bodyParser = require('body-parser');
 const base_url = 'http://localhost:3000';
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, '../public/views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(__dirname + '/public', 'views'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/', async (req, res) => {
-    try{
+    try {
         const response = await axios.get(base_url + '/books');
         res.render("books", { books: response.data });
     } catch (error) {
@@ -24,7 +25,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/books/:id', async (req, res) => {
-    try{ 
+    try {
         const response = await axios.get(base_url + '/books/' + req.params.id);
         res.render("book", { book: response.data });
     } catch (error) {
@@ -38,7 +39,7 @@ app.get("/create", (req, res) => {
 });
 
 app.post("/create", async (req, res) => {
-    try{
+    try {
         const data = { title: req.body.title, author: req.body.author, genre: req.body.genre, year: req.body.year };
         await axios.post(base_url + '/books', data);
         res.redirect("/");
@@ -49,7 +50,7 @@ app.post("/create", async (req, res) => {
 });
 
 app.get("/update/:id", async (req, res) => {
-    try{
+    try {
         const response = await axios.get(base_url + '/books/' + req.params.id);
         res.render("update", { book: response.data });
     } catch (error) {
@@ -58,7 +59,7 @@ app.get("/update/:id", async (req, res) => {
     }
 });
 app.post("/update/:id", async (req, res) => {
-    try{
+    try {
         const data = { title: req.body.title, author: req.body.author, genre: req.body.genre, year: req.body.year };
         await axios.put(base_url + '/books/' + req.params.id, data);
         res.redirect("/");
@@ -69,7 +70,7 @@ app.post("/update/:id", async (req, res) => {
 });
 
 app.get("/delete/:id", async (req, res) => {
-    try{
+    try {
         await axios.delete(base_url + '/books/' + req.params.id);
         res.redirect("/");
     } catch (error) {

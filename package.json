@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "format": "prettier --write *.js"
+    "format": "prettier --write *.js",
+    "start:backend": "node src/SequlizeSQLiteCRUDBook.js",
+    "start:frontend": "node src/AxiosNodeHtml.js",
+    "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
   },
   "homepage": "https://github.com/renamez4/Adv-Fullstack#readme",
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.11",
     "prettier": "^3.7.4"
   },
